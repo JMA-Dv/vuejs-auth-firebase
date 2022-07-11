@@ -29,7 +29,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 [Link](https://vueuse.org/firebase/readme.html)
 
 ```
-npm i @vueuse/firebase
+npm i @vueuse/firebase@4.11.1
 
 ```
 

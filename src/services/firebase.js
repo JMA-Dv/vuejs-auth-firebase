@@ -29,4 +29,14 @@ const database = firebase.firestore();
 const auth = firebase.auth();
 const serverTime = firebase.firestore.FieldValue.serverTimestamp;
 
+
+firebase.getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+      const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+        unsubscribe();
+        resolve(user);
+      }, reject);
+    });
+}
+
 export { database, auth, serverTime, firebase }
