@@ -4,7 +4,7 @@
   <div v-else>
     <Error v-if="printError"/>
     <TodoForm/>
-    <pre>{{todos}}</pre>
+    <Todo v-for="todo in todos" :key="todo.id" :todo="todo"/>
 
 
   </div>
@@ -22,11 +22,13 @@ import { ref } from '@vue/reactivity'
 import { computed, onMounted, provide } from '@vue/runtime-core'
 import Error from '../components/Error.vue'
 import TodoForm from '../components/todoForm.vue'
+import Todo from '../components/todo.vue'
 export default {
   components:{
     Loading,
     Error,
-    TodoForm
+    TodoForm,
+    Todo
 },
 setup(){
   const {isAuthenticated} = useAuth();

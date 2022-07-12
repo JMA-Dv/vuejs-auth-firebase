@@ -50,5 +50,33 @@ export const useDb = () => {
             }
         } 
     }
-    return { getTodos,addTodo }
+
+    const deleteTodoAsync = async(id)=>{
+        try {
+            await reference.doc(id).delete();
+            return {res:false}
+        } catch (error) {
+            return{
+                error,
+                res:true,
+            }   
+        }
+    }
+    const updateTodo  = async(todo)=>{
+        //When modifying instead on senting all object can be only modified a property like patch
+        try {
+            await reference.doc(todo.id).update({
+                state:!todo.state
+            })
+            return {
+                res:false
+            }
+        } catch (error) {
+            return {
+                error,
+                res:true
+            }
+        }
+    }
+    return { getTodos,addTodo,deleteTodoAsync,updateTodo }
 }

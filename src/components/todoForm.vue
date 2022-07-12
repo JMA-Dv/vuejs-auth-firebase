@@ -18,12 +18,18 @@ export default {
     const { addTodo } = useDb();
     const text = ref("");
     const todos = inject("todos");
-    console.log(typeof(todos));
+    const error = inject('error')
+    
     const processForm = async () => {
       if (!text.value.trim()) {
         return;
-      }
+      } 
+
       const todo = await addTodo(text.value);
+      if(todo.res){
+        error.value = todo.error;
+        return
+      }
       todos.value = [...todos.value, todo];
       text.value = "";
     };
